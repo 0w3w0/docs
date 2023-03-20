@@ -38,9 +38,12 @@ https://docs.docker.com/engine/install/ubuntu/
 
    ```shell
    go env -w GO111MODULE=on
+   ```
+   
+   ```shell
    go env -w GOPROXY=https://goproxy.io
    ```
-
+   
    
 
 ## cri-dockerd安装
@@ -68,17 +71,23 @@ https://docs.docker.com/engine/install/ubuntu/
 ## host 准备
 
 ```shell
-10.0.8.8 k8s-8
+vim /etc/hosts
 ```
 
 
 
 ## 关闭swap
 
+临时关闭: 
+
 ```shell
-临时关闭: sudo swapoff -a
+sudo swapoff -a
+```
+
 永久关闭：
-sudo vi /etc/fstab 注释 swap所在行，即swap所在行前增加 # 即可
+
+```shell
+ vi /etc/fstab 注释 swap所在行，即swap所在行前增加 # 即可
 ```
 
 
@@ -93,14 +102,21 @@ https://kubernetes.io/zh-cn/docs/reference/networking/ports-and-protocols/
 
 ## 加载ipvs模块
 
+检查ipvs是否启用
+
 ```shell
-# 检查ipvs是否启用
 lsmod | grep ip_vs
+```
 
-# 临时启用
+临时启用
+
+```shell
 for i in $(ls /lib/modules/$(uname -r)/kernel/net/netfilter/ipvs|grep -o "^[^.]*");do echo $i; /sbin/modinfo -F filename $i >/dev/null 2>&1 && /sbin/modprobe $i; done
+```
 
-# 永久启用
+永久启用
+
+```shell
 ls /lib/modules/$(uname -r)/kernel/net/netfilter/ipvs|grep -o "^[^.]*" >> /etc/modules
 ```
 
@@ -155,7 +171,13 @@ apt install -y ipvsadm ipset
 
    ```shell
    vi /etc/apt/sources.list
+   ```
+
+   ```shell
    deb https://mirrors.aliyun.com/kubernetes/apt/  kubernetes-xenial main
+   ```
+
+   ```shell
    apt update -y
    ```
 
