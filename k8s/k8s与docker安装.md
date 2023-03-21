@@ -209,5 +209,28 @@ apt install -y ipvsadm ipset
    EOF
    ```
 
-   
+1. 重新加载
 
+   ```shell
+   systemctl daemon-reload
+   ```
+   
+   ```shell
+   systemctl start kubelet.service
+   ```
+   
+   ```shell
+   systemctl enable kubelet.service
+   ```
+   
+   ```shell
+   systemctl status kubelet.service
+   ```
+   
+   
+   
+   
+   
+   
+   
+   
