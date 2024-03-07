@@ -282,7 +282,7 @@
 
    ```shell
    kubeadm join 192.168.2.110:6443 --token abcdef.0123456789abcdef \
-   --cri-socket unix:///run/cri-dockerd.sock \
+   	--cri-socket unix:///run/cri-dockerd.sock \
 	--discovery-token-ca-cert-hash sha256:63606f500ac51c271d3a0fa26b8faeb1d526bc7550997c20a134c448326d9d38  
    ```
 
